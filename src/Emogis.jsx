@@ -14,16 +14,19 @@ export const EmogisApp = () => {
 const [anime, setAnime] = useState(['Bola de dan', 'Dragon Ball'])
 
 
-const addAnime = ()=>{
+const addAnime = (newValue)=>{
  
-    setAnime([...anime, 'Carolina es una puta'])
+    setAnime([...anime, newValue])
 
 }
 
   return (
     <>
     <div>Lista Anime</div><ol>
-    <AddAnime/>
+    <AddAnime 
+    onNewValue={addAnime}
+    
+    />
 
         <button onClick={addAnime}>Añadir</button>
 

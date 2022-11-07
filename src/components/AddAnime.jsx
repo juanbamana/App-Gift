@@ -1,40 +1,47 @@
 import React from 'react'
 import { useState } from 'react'
 
-export const AddAnime = () => {
+export const AddAnime = ({ onNewValue }) => {
 
-const [inputValue, setinputValue] = useState('Hola')
+  const [inputValue, setinputValue] = useState('')
 
 
 
-const onChangedInput = (e)=>{
+  const onChangedInput = (e) => {
 
-setinputValue(e.target.value)
-console.log(e.target.value)
-}
+    setinputValue(e.target.value)
+  }
 
-const onSubmit = (e)=>{
 
-e.preventDefault()    
-    }
+
+
+  const onSubmit = (e) => {
+
+    e.preventDefault()
+
+    if (inputValue.trim().length <= 1) return
+    onNewValue(inputValue.trim())
+
+    setinputValue('')
+  }
 
 
   return (
     <div>
 
-<form   onSubmit={(e)=>onSubmit(e)}>
+      <form onSubmit={onSubmit}>
         <input
-        type="text"
-        placeholder='Añade Anime'
-        value={inputValue}
-        onChange={(e)=>{onChangedInput(e)}}
+          type="text"
+          placeholder='Añade Anime'
+          value={inputValue}
+          onChange={(e) => { onChangedInput(e) }}
 
         >
-        
-        
+
+
         </input>
 
-        </form>
+      </form>
     </div>
   )
 }
