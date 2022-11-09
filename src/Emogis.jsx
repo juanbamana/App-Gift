@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { AddAnime } from './components/AddAnime'
-
+import { GifGrid } from './components/GifGrid'
 
 
 
@@ -11,31 +11,31 @@ import { AddAnime } from './components/AddAnime'
 export const EmogisApp = () => {
 
 
-const [anime, setAnime] = useState(['Bola de dan', 'Dragon Ball'])
+  const [anime, setAnime] = useState(['Bola de dan'])
 
 
-const addAnime = (newValue)=>{
- 
-    setAnime([...anime, newValue])
+  const addAnime = (newValue) => {
+    if (anime.includes(newValue)) return
+    setAnime([newValue, ...anime, ])
 
-}
+  }
 
   return (
     <>
-    <div>Lista Anime</div><ol>
-    <AddAnime 
-    onNewValue={addAnime}
-    
-    />
 
-        <button onClick={addAnime}>Añadir</button>
+      <AddAnime
+        onNewValue={addAnime}
 
-          {anime.map((anime) => {
+      />
 
-             return <li key={anime}>{anime}</li>
-          })}
+        {anime.map((anime) => (
 
-      </ol>
-      </>
+          <GifGrid
+            key={anime}
+            anime={anime} />
+        ))
+        }
+
+    </>
   )
 }
